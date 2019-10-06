@@ -1,0 +1,28 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block content %}
+<header class="masthead" style="background-image: url({% static 'img/home-bg.jpg' %})">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>Logged Out </h1>
+                    <span class="subheading"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <a class="btn btn-primary" href="{% url 'login' %}">
+                Login
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

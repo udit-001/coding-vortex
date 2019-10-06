@@ -1,0 +1,50 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block content %}
+<header class="masthead" style="background-image: url({% static 'img/home-bg.jpg' %})">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>Login </h1>
+                    <span class="subheading">{{ subtitle }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <p>Want to start posting posts on our blog? Get started by logging into your account!</p>
+            {% include 'partials/_alerts.html' %}
+            <form method="POST">
+                {% csrf_token %}
+                {% for element in form %}
+                <div class="control-group ">
+                    <div
+                        class="form-group floating-label-form-group controls {% if element.errors %}border-bottom border-danger{% endif %}">
+                        <label>{{element.label}}</label>
+                        <input
+                            type="{% if element.name == 'password' %}password{% else %}{{ element.field.widget.input_type }}{% endif %}"
+                            class="form-control {% if element.errors %}is-invalid{% endif %}"
+                            placeholder="{{element.label}}{% if element.field.required %}*{% endif %}"
+                            id="{{element.id_for_label}}"
+                            data-validation-required-message="Please enter your {{ element.id_for_label }}."
+                            name="{{ element.name }}">
+                        <p class="help-block text-danger">{{ element.errors.0 }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <br>
+                <button type="submit" class="btn btn-primary">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

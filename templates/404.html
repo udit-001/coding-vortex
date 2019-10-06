@@ -1,0 +1,30 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<!-- Page Header -->
+<header class="masthead" style="background-image: url({% static 'img/home-bg.jpg' %})">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>OOPS!</h1>
+                    <span class="subheading">The page you are looking for might have been removed had it's name changed
+                        or is temporarily unavailable.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <a class="btn btn-primary float-right" href="{% url 'home' %}">Go Back to Homepage
+                <i class="fas fa-chevron-right"></i></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

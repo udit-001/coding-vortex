@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'blog_ui:home' %}">Coding Vortex</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog_ui:home' %}">Home</a>
+                </li>
+                {% for category in categories %}
+                {% if category.is_main %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog_ui:category' category.slug %}">{{ category }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        {% for category in categories %}
+                        {% if not category.is_main %}
+                        <a class="dropdown-item" href="{% url 'blog_ui:category' category.slug %}">{{ category }}</a>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/api/docs/">API</a>
+                </li>
+                <li class="nav-item">
+                    <a class="submit" role="button" data-toggle="modal" data-target="#exampleModalCenter"><i
+                            class="fas fa-search"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="modal fade" id="exampleModalCenter" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Search</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form" method="get" action="{% url 'blog_ui:post-search' %}" accept-charset="utf-8" _lpchecked="1"
+                    id="search_form">
+                    <div class="form-group">
+                        <input autofocus type="text" name="q" class="form-control rounded-0"
+                            placeholder="Enter a keyword..." id="mkdocs-search-query">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" class="py-2 btn btn-outline-secondary rounded" form="search_form">
+            </div>
+        </div>
+    </div>
+</div>

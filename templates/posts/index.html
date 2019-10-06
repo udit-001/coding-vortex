@@ -1,0 +1,68 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ block.super }}
+{% endblock title %}
+
+
+{% block content %}
+<!-- Page Header -->
+<header class="masthead" style="background-image: url({% static 'img/home-bg.jpg' %})">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>Coding Vortex</h1>
+          <span class="subheading">A Blog about Python, Linux and Web Development.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      {% for post in posts %}
+      <div class="post-preview">
+        <a href="{{ post.get_absolute_url }}">
+          <h2 class="post-title">
+            {{ post.title }}
+          </h2>
+          <h3 class="post-subtitle">
+            {{ post.overview }}
+          </h3>
+        </a>
+        <p class="post-meta">Posted by
+          <a href="{{ post.author.get_absolute_url }}">{{ post.author.display_name }}</a>
+          on {{ post.published_date | date:"M d, Y" }} in
+          <a href="{% url 'blog_ui:category' post.category.slug %}"><span
+              class="badge badge-pill badge-secondary">{{ post.category }}</span></a>
+        </p>
+      </div>
+      {% if forloop.last %}
+      {% else %}
+      <hr>
+      {% endif %}
+      {% endfor %}
+      <!-- Pager -->
+      {% if posts.has_other_pages %}
+      <div class="clearfix">
+        {% if posts.has_previous %}
+        <a class="btn btn-primary float-left" href="?page={{ posts.previous_page_number }}"><i
+            class="fas fa-chevron-left"></i> Newer Posts </a>
+        {% endif %}
+        {% if posts.has_next %}
+        <a class="btn btn-primary float-right" href="?page={{ posts.next_page_number }}">Older Posts <i
+            class="fas fa-chevron-right"></i></a>
+        {% endif %}
+      </div>
+      <br>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

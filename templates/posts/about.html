@@ -1,0 +1,29 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url({% static 'img/about-bg.jpg' %})">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="page-heading">
+          <h1>{{ author.display_name }}</h1>
+          <span class="subheading">{{ author.short_description }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      {{ author.bio }}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
