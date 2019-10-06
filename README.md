@@ -4,7 +4,8 @@
 ![Website Status](https://img.shields.io/website/https/codingvortex.herokuapp.com?down_color=lightgrey&down_message=offline&style=flat-square&up_color=blue&up_message=online)
 ![Security Headers](https://img.shields.io/security-headers?style=flat-square&url=https%3A%2F%2Fcodingvortex.herokuapp.com)
 
-**Website** : https://codingvortex.herokuapp.com
+**Website** : https://codingvortex.herokuapp.com  
+**API** : https://codingvortex.herokuapp.com/api/docs/
 
 ## Overview
 A Blog CMS made using Django that allows you to create posts by using the Django Admin with the help of a WYSIWYG editor, comes with a tagging system, integrated Disqus comments system, contact form to allow visitors to send queries to the authors. 
@@ -32,7 +33,6 @@ The Blog also has a REST API which can be used to create client on multiple plat
 
 ### Backend
 - [django-rest-framework](https://www.django-rest-framework.org/) : Django REST framework is a powerful and flexible toolkit for building Web APIs.
-
 - [django-taggit](https://github.com/jazzband/django-taggit) : Allows us to add tagging system to our existing models.
 - [django-taggit-serializer](https://github.com/glemmaPaul/django-taggit-serializer) : Adds functionality for using taggit with django-rest-framework.
 - [django-taggit-selectize](https://github.com/chhantyal/taggit-selectize) : Adds the autocomplete functionality in django admin for tags fields.
