@@ -15,7 +15,7 @@ sitemaps = {
     'categories': CategorySitemap
 }
 
-API_TITLE = 'Blog API'
+API_TITLE = 'Coding Vortex Blog API'
 API_DESCRIPTION = 'API to access data from our blog.'
 
 urlpatterns = [
@@ -34,19 +34,5 @@ urlpatterns = [
                                         description=API_DESCRIPTION, patterns=urls.urlpatterns)),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL,
-                          document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
-    import debug_toolbar
-    urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls)),
-
-        # For django versions before 2.0:
-        # url(r'^__debug__/', include(debug_toolbar.urls)),
-
-    ] + urlpatterns
-
-admin.site.site_header = 'Simple Blog Admin'
-admin.site.site_title = 'Simple Blog Admin'
+admin.site.site_header = 'Coding Vortex Blog Admin'
+admin.site.site_title = 'Coding Vortex Blog Admin'
