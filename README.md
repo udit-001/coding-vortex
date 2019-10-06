@@ -1,6 +1,5 @@
 # Coding Vortex Blog
 
-
 ![Website Status](https://img.shields.io/website/https/codingvortex.herokuapp.com?down_color=lightgrey&down_message=offline&style=flat-square&up_color=blue&up_message=online)
 ![Security Headers](https://img.shields.io/security-headers?style=flat-square&url=https%3A%2F%2Fcodingvortex.herokuapp.com)
 
@@ -13,16 +12,27 @@ A Blog CMS made using Django that allows you to create posts by using the Django
 The Blog also has a REST API which can be used to create client on multiple platforms such as Android, iOS etc. The API comes with search, sorting and filtering abilities.
 
 ## Features
+
 - 🤖 **API** : The Blog comes with an API which allows developers to built client side applications for different platforms such as Android and iOS etc.
+
 - 🗂️ **Categories** : Posts can be grouped together with the help of categories and be used to display similar blog posts to the users.
+
 - 💬 **Disqus Comments** : Each post will have a comments section attached at the end of the article so that visitors can have a discussion relating to the content of the article.
+
 - 📄 **Pagination** : Every results page including the homepage of the blog and API will come along with pagination features so as to reduce load on the client side.
+
 - 🕘 **Read time estimation** : Each article's reading time will be estimated and displayed to the user in a similar manner to the popular blogging site Medium.
+
 - 📰 **Related Posts** : Similar posts will be displayed to the user at the end of each article.
+
 - 🔎 **Search** : Allows user to search through the posts available on the blog.
+
 - 🔗 **Share buttons** : Presents users with the sharing buttons on each page so they can easily share an article with someone. 
+
 - 🔍 **SEO Settings** : It allows authors to control how the articles will be displayed into the search results. 
+
 - 🏷️ **Tags** : Posts can have multiple tags which can be used to find similar posts. 
+
 - 👨‍💻 **Code Syntax Highlighting** : The blog displays text, especially source code, in different colors and fonts according to the category of terms.
 
 ## Technical Details
