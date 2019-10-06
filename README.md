@@ -14,7 +14,7 @@ The Blog also has a REST API which can be used to create client on multiple plat
 - 📰 **Related Posts** : Similar posts will be displayed to the user at the end of each article.
 - 🔎 **Search** : Allows user to search through the posts available on the blog.
 - 🔗 **Share buttons** : Presents users with the sharing buttons on each page so they can easily share an article with someone. 
-- 🔍 **SEO Settings** : It allows authors to control how the articles will be displayed into the search. 
+- 🔍 **SEO Settings** : It allows authors to control how the articles will be displayed into the search results. 
 - 🏷️ **Tags** : Posts can have multiple tags which can be used to find similar posts. 
 - 👨‍💻 **Code Syntax Highlighting** : The blog displays text, especially source code, in different colors and fonts according to the category of terms.
 
