@@ -1,4 +1,4 @@
-# Coding Vortex
+# Coding Vortex Blog
 
 ## Overview
 A Blog CMS made using Django that allows you to create posts by using the Django Admin with the help of a WYSIWYG editor, comes with a tagging system, integrated Disqus comments system, contact form to allow visitors to send queries to the authors. 
