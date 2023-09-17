@@ -11,7 +11,7 @@ services:
     depends_on:
       - "db"
     env_file:
-      - ./.env
+      - ./.env.example
     command: /start
     volumes:
       - media:/app/media/
