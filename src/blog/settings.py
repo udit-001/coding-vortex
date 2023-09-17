@@ -136,7 +136,6 @@ STATICFILES_DIRS = (
 
 # Cloudinary Static Config
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-# STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Taggit-selectize config
@@ -198,9 +197,9 @@ TINYMCE_DEFAULT_CONFIG = {
 
 # ReCaptcha
 RECAPTCHA_PUBLIC_KEY = env(
-    'RECAPTCHA_PUBLIC', default='6Lepk7MUAAAAAEAyRLEl_EtGiNWcqXnxAm2jHs1T')
+    'RECAPTCHA_PUBLIC')
 RECAPTCHA_PRIVATE_KEY = env(
-    'RECAPTCHA_PRIVATE', default='6Lepk7MUAAAAAO_BpCuOj0-HkPhG_jK0dfbN0BRF')
+    'RECAPTCHA_PRIVATE')
 
 # REST Framework
 REST_FRAMEWORK = {
@@ -248,9 +247,9 @@ LOGIN_REDIRECT_URL = '/'
 
 # Cloudinary Settings
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': env('CLOUDINARY_CLOUD_NAME', default='dgzv0nyhi'),
-    'API_KEY': env('CLOUDINARY_API_KEY', default='484426369766576'),
-    'API_SECRET': env('CLOUDINARY_API_SECRET', default='Wkwebt368Q8fugqk-5n-oIcMACM'),
+    'CLOUD_NAME': env('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': env('CLOUDINARY_API_KEY'),
+    'API_SECRET': env('CLOUDINARY_API_SECRET'),
     'STATIC_TAG': 'static',
     'STATICFILES_MANIFEST_ROOT': os.path.join(BASE_DIR, 'manifest'),
     'STATIC_IMAGES_EXTENSIONS': ['jpg', 'jpe', 'jpeg', 'jpc', 'jp2', 'j2k', 'wdp', 'jxr',
@@ -260,10 +259,10 @@ CLOUDINARY_STORAGE = {
 }
 
 # Security
-# SECURE_SSL_REDIRECT = True
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-# SECURE_CONTENT_TYPE_NOSNIFF = True
-# SECURE_BROWSER_XSS_FILTER = True
-# X_FRAME_OPTIONS = 'DENY'
-# SECURE_HSTS_SECONDS = 31536000
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_HSTS_SECONDS = 31536000
