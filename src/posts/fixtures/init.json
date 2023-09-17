@@ -1,0 +1,114 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$Gk86ZmFKGY39$SRtUi0Ar0ePHXMtsA29k+m7oAR4VkEJUDUbENXdtofI=",
+            "last_login": "2023-09-17T22:17:13Z",
+            "is_superuser": true,
+            "username": "demo",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-09-17T21:58:30Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$DGDmGt8e2EBA$d0dZajvc1bLwKoH1/VliEl35ES6+3zvLXYPikZnRcZ4=",
+            "last_login": "2023-09-17T22:18:33.131Z",
+            "is_superuser": false,
+            "username": "udit",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-09-17T22:04:24Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "posts.author",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "display_name": "Udit Mittal",
+            "short_description": "Django Developer",
+            "bio": "Loves building web application",
+            "uuid": "f973db0f-251e-4379-9c1b-3421711f7a09"
+        }
+    },
+    {
+        "model": "posts.author",
+        "pk": 3,
+        "fields": {
+            "user": 1,
+            "display_name": null,
+            "short_description": "Author tag",
+            "bio": "Author Bio",
+            "uuid": "12a567eb-d0ef-4046-8584-d5aa9f1e84c9"
+        }
+    },
+    {
+        "model": "posts.category",
+        "pk": 1,
+        "fields": {
+            "name": "Django",
+            "slug": "django",
+            "is_main": false
+        }
+    },
+    {
+        "model": "posts.category",
+        "pk": 2,
+        "fields": {
+            "name": "Python",
+            "slug": "python",
+            "is_main": true
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 1,
+        "fields": {
+            "title": "Python Blog 1",
+            "modification_date": "2023-09-17T22:09:12.752Z",
+            "published_date": "2023-09-17T22:09:12.752Z",
+            "author": 2,
+            "slug": "python-blog-1",
+            "featured_image": null,
+            "overview": "Python Test",
+            "category": 2,
+            "content": "<h1>Heading 1</h1>\r\n<h2>Heading 2</h2>\r\n<h3>Heading 3</h3>\r\n<h4>Heading 4</h4>\r\n<h5>Heading 5</h5>\r\n<h6>Heading 6</h6>\r\n<p>Unordered List Items:</p>\r\n<ul>\r\n<li>Apple</li>\r\n<li>Orange</li>\r\n<li>Banana</li>\r\n</ul>\r\n<p>Ordered List Items:</p>\r\n<ol>\r\n<li>Maths</li>\r\n<li>English</li>\r\n<li>Hindi</li>\r\n<li>Science</li>\r\n</ol>",
+            "is_published": true,
+            "seo_title": "Python Blog 1",
+            "seo_description": "Python first blog"
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 2,
+        "fields": {
+            "title": "Django Blog 1",
+            "modification_date": "2023-09-17T22:11:31.852Z",
+            "published_date": "2023-09-17T22:11:31.852Z",
+            "author": 2,
+            "slug": "django-blog-1",
+            "featured_image": null,
+            "overview": "Django Test",
+            "category": 1,
+            "content": "<h1>Heading 1</h1>\r\n<h2>Heading 2</h2>\r\n<h3>Heading 3</h3>\r\n<h4>Heading 4</h4>\r\n<h5>Heading 5</h5>\r\n<h6>Heading 6</h6>\r\n<p>Unordered List Items:</p>\r\n<ul>\r\n<li>Apple</li>\r\n<li>Orange</li>\r\n<li>Banana</li>\r\n</ul>\r\n<p>Ordered List Items:</p>\r\n<ol>\r\n<li>Maths</li>\r\n<li>English</li>\r\n<li>Hindi</li>\r\n<li>Science</li>\r\n</ol>",
+            "is_published": true,
+            "seo_title": "Django Blog 1",
+            "seo_description": "Django first blog"
+        }
+    }
+]
