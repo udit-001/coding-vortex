@@ -1,5 +1,48 @@
 [
     {
+        "model": "taggit.tag",
+        "pk": 1,
+        "fields": {
+            "name": "python",
+            "slug": "python"
+        }
+    },
+    {
+        "model": "taggit.tag",
+        "pk": 2,
+        "fields": {
+            "name": "django",
+            "slug": "django"
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1,
+        "fields": {
+            "tag": 1,
+            "content_type": 12,
+            "object_id": 1
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 2,
+        "fields": {
+            "tag": 1,
+            "content_type": 12,
+            "object_id": 2
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 3,
+        "fields": {
+            "tag": 2,
+            "content_type": 12,
+            "object_id": 2
+        }
+    },
+    {
         "model": "auth.user",
         "pk": 1,
         "fields": {
@@ -80,14 +123,14 @@
         "pk": 1,
         "fields": {
             "title": "Python Blog 1",
-            "modification_date": "2023-09-17T22:09:12.752Z",
-            "published_date": "2023-09-17T22:09:12.752Z",
+            "modification_date": "2023-09-17T22:31:49.659Z",
+            "published_date": "2023-09-17T22:31:49.659Z",
             "author": 2,
             "slug": "python-blog-1",
             "featured_image": null,
             "overview": "Python Test",
             "category": 2,
-            "content": "<h1>Heading 1</h1>\r\n<h2>Heading 2</h2>\r\n<h3>Heading 3</h3>\r\n<h4>Heading 4</h4>\r\n<h5>Heading 5</h5>\r\n<h6>Heading 6</h6>\r\n<p>Unordered List Items:</p>\r\n<ul>\r\n<li>Apple</li>\r\n<li>Orange</li>\r\n<li>Banana</li>\r\n</ul>\r\n<p>Ordered List Items:</p>\r\n<ol>\r\n<li>Maths</li>\r\n<li>English</li>\r\n<li>Hindi</li>\r\n<li>Science</li>\r\n</ol>",
+            "content": "<h1>Heading 1</h1>\r\n<h2>Heading 2</h2>\r\n<h3>Heading 3</h3>\r\n<h4>Heading 4</h4>\r\n<h5>Heading 5</h5>\r\n<h6>Heading 6</h6>\r\n<p>Unordered List Items:</p>\r\n<ul>\r\n<li>Apple</li>\r\n<li>Orange</li>\r\n<li>Banana</li>\r\n</ul>\r\n<p>Ordered List Items:</p>\r\n<ol>\r\n<li>Maths</li>\r\n<li>English</li>\r\n<li>Hindi</li>\r\n<li>Science</li>\r\n</ol>\r\n<pre class=\"language-python\"><code># This program adds two numbers\r\n\r\nnum1 = 1.5\r\nnum2 = 6.3\r\n\r\n# Add two numbers\r\nsum = num1 + num2\r\n\r\n# Display the sum\r\nprint('The sum of {0} and {1} is {2}'.format(num1, num2, sum))\r\n</code></pre>",
             "is_published": true,
             "seo_title": "Python Blog 1",
             "seo_description": "Python first blog"
@@ -98,8 +141,8 @@
         "pk": 2,
         "fields": {
             "title": "Django Blog 1",
-            "modification_date": "2023-09-17T22:11:31.852Z",
-            "published_date": "2023-09-17T22:11:31.852Z",
+            "modification_date": "2023-09-17T22:32:36.659Z",
+            "published_date": "2023-09-17T22:32:36.659Z",
             "author": 2,
             "slug": "django-blog-1",
             "featured_image": null,
