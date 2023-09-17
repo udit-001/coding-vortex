@@ -1,12 +1,7 @@
 # Coding Vortex Blog
 
-![Website Status](https://img.shields.io/website/https/codingvortex.herokuapp.com?down_color=lightgrey&down_message=offline&style=flat-square&up_color=blue&up_message=online)
-![Security Headers](https://img.shields.io/security-headers?style=flat-square&url=https%3A%2F%2Fcodingvortex.herokuapp.com)
 [![HitCount](http://hits.dwyl.com/udit-001/coding-vortex.svg)](http://hits.dwyl.com/udit-001/coding-vortex)
 
-
-**Website** : https://codingvortex.herokuapp.com  
-**API** : https://codingvortex.herokuapp.com/api/docs/
 
 ## Overview
 A Blog CMS made using Django that allows you to create posts by using the Django Admin with the help of a WYSIWYG editor, comes with a tagging system, integrated Disqus comments system, contact form to allow visitors to send queries to the authors. 
