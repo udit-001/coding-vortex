@@ -31,12 +31,18 @@ class Author(models.Model):
         ordering = ('display_name', )
 
     @receiver(post_save, sender=User)
-    def create_user_author(sender, instance, created, **kwargs):
+    def create_user_author(sender, instance, created, raw, **kwargs):
+        if raw == True:
+            return
+
         if created:
             Author.objects.create(user=instance)
 
     @receiver(post_save, sender=User)
-    def save_user_author(sender, instance, **kwargs):
+    def save_user_author(sender, instance, raw, **kwargs):
+        if raw == True:
+            return
+
         instance.author.save()
 
     def get_absolute_url(self):
