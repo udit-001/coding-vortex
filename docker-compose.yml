@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: coding_vortex
+    ports:
+      - "8000:8000"
+    depends_on:
+      - "db"
+    env_file:
+      - ./.env
+    command: /start
+    volumes:
+      - media:/app/media/
+
+  db:
+    restart: always
+    image: postgres:latest
+    ports:
+      - "5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=coding_vortex
+      - POSTGRES_PASSWORD=coding_vortex
+
+
+volumes:
+  postgres_data:
+  media:
