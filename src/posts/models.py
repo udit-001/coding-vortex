@@ -88,13 +88,13 @@ class Post(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, related_name="posts", blank=True, null=True, help_text='The category the blog post should be displayed under')
     tags = TaggableManager(
-        help_text='​​​​An array of strings that represent tags for the post. ')
+        help_text='An array of strings that represent tags for the post. ')
     content = HTMLField(help_text='Content of the post, including the markup.')
     is_published = models.BooleanField(
         default=False, help_text='Whether the post is visible on the blog or not')
 
     seo_title = models.CharField(max_length=60, help_text='The SEO title for the post. Site owners can create a different title for the browser title bar.', verbose_name='SEO Title')
-    seo_description = models.CharField(max_length=160, help_text='​​​The SEO page description for the post.', verbose_name='SEO Description')
+    seo_description = models.CharField(max_length=160, help_text='The SEO page description for the post.', verbose_name='SEO Description')
 
     class Meta:
         ordering = ['published_date']
