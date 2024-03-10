@@ -8,6 +8,11 @@ A Blog CMS made using Django that allows you to create posts by using the Django
 
 The Blog also has a REST API which can be used to create client on multiple platforms such as Android, iOS etc. The API comes with search, sorting and filtering abilities.
 
+## Database Schema
+Here is the database schema employed within the application:
+
+[![Database Schema](/docs/coding-vortex.svg 'Coding Vortex Database Schema')](https://dbdiagram.io/d/Coding-Vortex-65ee37c9b1f3d4062c92d7e0)
+
 ## Features
 
 - 🤖 **API** : The Blog comes with an API which allows developers to built client side applications for different platforms such as Android and iOS etc.
