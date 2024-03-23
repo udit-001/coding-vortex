@@ -94,7 +94,7 @@ class Post(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, related_name="posts", blank=True, null=True, help_text='The category the blog post should be displayed under')
     tags = TaggableManager(
-        help_text='An array of strings that represent tags for the post. ')
+        help_text='An array of strings that represent tags for the post', blank=True)
     content = HTMLField(help_text='Content of the post, including the markup.')
     is_published = models.BooleanField(
         default=False, help_text='Whether the post is visible on the blog or not')
