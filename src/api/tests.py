@@ -113,6 +113,20 @@ class PostTests(APITestCase):
         self.assertEqual(detail_response.data['slug'], post_payload['slug'])
 
 
+    def test_post_detail_post_delete(self):
+        """
+            Ensure we can delete created posts
+        """
+        create_response = self.client.post(self.create_url, self.post_payload, format='multipart')
+        self.assertEqual(create_response.status_code, status.HTTP_201_CREATED)
+        post_data = create_response.data
+
+        detail_url = reverse(PostDetail.name, kwargs={"slug": post_data['slug']})
+        detail_response = self.client.delete(detail_url, format='json')
+        self.assertEqual(detail_response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(Post.objects.filter(slug=post_data['slug']).count(), 0)
+
+
 class PostPermissionTests(APITestCase):
     def setUp(self):
         self.post_payload = {
