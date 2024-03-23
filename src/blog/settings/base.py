@@ -4,21 +4,19 @@ import os
 import environ
 from django.contrib.messages import constants as messages
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))))
+
 
 env = environ.Env(
     DEBUG=(bool, True)
 )
 
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(
-    os.path.abspath(__file__))))
-
-
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY', default='secret-key')
 
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost'])
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -88,7 +86,7 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db(),
+    'default': env.db(default='sqlite:///db.sqlite3'),
 }
 
 
@@ -130,6 +128,7 @@ STATIC_URL = '/static/'
 # Cloudinary Config
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
@@ -198,9 +197,9 @@ TINYMCE_DEFAULT_CONFIG = {
 
 # ReCaptcha
 RECAPTCHA_PUBLIC_KEY = env(
-    'RECAPTCHA_PUBLIC')
+    'RECAPTCHA_PUBLIC', default='recaptcha-public')
 RECAPTCHA_PRIVATE_KEY = env(
-    'RECAPTCHA_PRIVATE')
+    'RECAPTCHA_PRIVATE', default='recaptcha-private')
 
 # REST Framework
 REST_FRAMEWORK = {
