@@ -1,6 +1,8 @@
+import shutil
 from io import BytesIO
 
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import override_settings
 from django.urls import reverse
 from PIL import Image
 from rest_framework import status
@@ -11,6 +13,7 @@ from uploads.models import ImageUpload
 
 from .views import *
 
+TEST_DIR = "test_images"
 
 class UserTests(APITestCase):
     def test_list_user(self):
@@ -169,6 +172,13 @@ class ImageUploadTests(UserCreateMixin, APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token}')
         self.uploads_url = reverse(UploadImageView.name)
 
+    def tearDown(self):
+        try:
+            shutil.rmtree(TEST_DIR)
+        except OSError:
+            pass
+
+    @override_settings(MEDIA_ROOT=(TEST_DIR + '/media'))
     def test_image_upload(self):
         image_data = BytesIO()
         image = Image.new('RGB', (100, 100), 'white')
