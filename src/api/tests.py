@@ -205,3 +205,63 @@ class ImageUploadTests(APITestCase):
     def test_image_upload_list(self):
         response = self.client.get(self.uploads_url, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+class CategoryTests(APITestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.login_data = {
+            'username': 'testuser',
+            'password': 'testpassword'
+        }
+        user_url = reverse(CreateUserView.name)
+        data = {'username': 'test', 'password': 'testpass'}
+        user_response = self.client.post(user_url, data, format='json')
+
+        token_url = reverse('obtain-token')
+        token_response = self.client.post(token_url, data, format='json')
+
+        self.token = token_response.data['token']
+        self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token}')
+        self.category_url = reverse(CategoryListView.name)
+        self.payload = {
+            "name": "Test Category",
+            "slug": "test-category"
+        }
+
+    def create_category(self):
+        return self.client.post(self.category_url, self.payload, format='json')
+
+    def test_category_list(self):
+        response = self.client.get(self.category_url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_category_create(self):
+        create_response = self.create_category()
+        self.assertEqual(create_response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Category.objects.filter(name=self.payload['name']).count(), 1)
+
+        list_response = self.client.get(self.category_url, format='json')
+        self.assertEqual(list_response.status_code, status.HTTP_200_OK)
+        self.assertEqual(list_response.json()['count'], 1)
+
+    def test_category_detail_read(self):
+        create_response = self.create_category()
+        self.assertEqual(create_response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Category.objects.filter(name=self.payload['name']).count(), 1)
+
+        detail_url = reverse(CategoryDetailView.name, kwargs={"slug": self.payload['slug']})
+        detail_response = self.client.get(detail_url, format='json')
+        self.assertEqual(detail_response.status_code, status.HTTP_200_OK)
+        self.assertEqual(detail_response.json()['slug'], self.payload['slug'])
+
+    def test_category_detail_patch_update(self):
+        create_response = self.create_category()
+        self.assertEqual(create_response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Category.objects.filter(name=self.payload['name']).count(), 1)
+
+        detail_url = reverse(CategoryDetailView.name, kwargs={"slug": self.payload['slug']})
+        update_payload = {"name": "updated category"}
+        detail_response = self.client.patch(detail_url, update_payload, format='json')
+        self.assertEqual(detail_response.status_code, status.HTTP_200_OK)
+        self.assertEqual(detail_response.json()['name'], update_payload['name'])
