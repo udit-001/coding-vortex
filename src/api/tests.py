@@ -48,21 +48,21 @@ class UserTests(APITestCase):
         self.assertEqual(token_response.status_code, status.HTTP_200_OK)
 
 
-class PostTests(APITestCase):
+class UserCreateMixin:
+
+    @classmethod
+    def setUpTestData(cls):
+        user = User.objects.create_user(username='testuser')
+        user.set_password("testpassword")
+        user.save()
+        token = Token.objects.create(user=user)
+        cls.user = user
+        cls.token = token.key
+
+
+class PostTests(UserCreateMixin, APITestCase):
     def setUp(self):
         self.client = APIClient()
-        self.login_data = {
-            'username': 'testuser',
-            'password': 'testpassword'
-        }
-        user_url = reverse(CreateUserView.name)
-        data = {'username': 'test', 'password': 'testpass'}
-        user_response = self.client.post(user_url, data, format='json')
-
-        token_url = reverse('obtain-token')
-        token_response = self.client.post(token_url, data, format='json')
-
-        self.token = token_response.data['token']
         self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token}')
         self.post_payload = {
             "title": "Test Post",
@@ -163,21 +163,9 @@ class PostPermissionTests(APITestCase):
         self.assertEqual(create_response.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
-class ImageUploadTests(APITestCase):
+class ImageUploadTests(UserCreateMixin, APITestCase):
     def setUp(self):
         self.client = APIClient()
-        self.login_data = {
-            'username': 'testuser',
-            'password': 'testpassword'
-        }
-        user_url = reverse(CreateUserView.name)
-        data = {'username': 'test', 'password': 'testpass'}
-        user_response = self.client.post(user_url, data, format='json')
-
-        token_url = reverse('obtain-token')
-        token_response = self.client.post(token_url, data, format='json')
-
-        self.token = token_response.data['token']
         self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token}')
         self.uploads_url = reverse(UploadImageView.name)
 
@@ -207,21 +195,9 @@ class ImageUploadTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
-class CategoryTests(APITestCase):
+class CategoryTests(UserCreateMixin, APITestCase):
     def setUp(self):
         self.client = APIClient()
-        self.login_data = {
-            'username': 'testuser',
-            'password': 'testpassword'
-        }
-        user_url = reverse(CreateUserView.name)
-        data = {'username': 'test', 'password': 'testpass'}
-        user_response = self.client.post(user_url, data, format='json')
-
-        token_url = reverse('obtain-token')
-        token_response = self.client.post(token_url, data, format='json')
-
-        self.token = token_response.data['token']
         self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token}')
         self.category_url = reverse(CategoryListView.name)
         self.payload = {
@@ -267,21 +243,9 @@ class CategoryTests(APITestCase):
         self.assertEqual(detail_response.json()['name'], update_payload['name'])
 
 
-class AuthorTests(APITestCase):
+class AuthorTests(UserCreateMixin, APITestCase):
     def setUp(self):
         self.client = APIClient()
-        self.login_data = {
-            'username': 'testuser',
-            'password': 'testpassword'
-        }
-        user_url = reverse(CreateUserView.name)
-        data = {'username': 'test', 'password': 'testpass'}
-        user_response = self.client.post(user_url, data, format='json')
-
-        token_url = reverse('obtain-token')
-        token_response = self.client.post(token_url, data, format='json')
-
-        self.token = token_response.data['token']
         self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token}')
         self.author_url = reverse(AuthorList.name)
         self.payload = {
