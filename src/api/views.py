@@ -132,7 +132,7 @@ class CreateUserView(generics.ListCreateAPIView):
     `POST` Create a new User
 
     """
-    queryset = User.objects.all()
+    queryset = User.objects.order_by("username")
     serializer_class = CreateUserSerializer
     throttle_scope = 'register'
     name = 'Create User'
