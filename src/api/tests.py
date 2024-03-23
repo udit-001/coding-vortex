@@ -1,8 +1,13 @@
+from io import BytesIO
+
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
+from PIL import Image
 from rest_framework import status
 from rest_framework.test import APIClient, APITestCase
 
 from posts.models import *
+from uploads.models import ImageUpload
 
 from .views import *
 
@@ -144,3 +149,47 @@ class PostPermissionTests(APITestCase):
     def test_post_create_permission(self):
         create_response = self.client.post(self.create_url, self.post_payload, format='json')
         self.assertEqual(create_response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+
+class ImageUploadTests(APITestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.login_data = {
+            'username': 'testuser',
+            'password': 'testpassword'
+        }
+        user_url = reverse(CreateUserView.name)
+        data = {'username': 'test', 'password': 'testpass'}
+        user_response = self.client.post(user_url, data, format='json')
+
+        token_url = reverse('obtain-token')
+        token_response = self.client.post(token_url, data, format='json')
+
+        self.token = token_response.data['token']
+        self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token}')
+        self.uploads_url = reverse(UploadImageView.name)
+
+    def test_image_upload(self):
+        image_data = BytesIO()
+        image = Image.new('RGB', (100, 100), 'white')
+        image.save(image_data, format='png')
+        image_data.seek(0)
+
+        image_file = SimpleUploadedFile("test.png", image_data.read(), content_type='image/png')
+        payload = {
+            "name": "test_image",
+            "image": image_file
+        }
+        upload_response = self.client.post(self.uploads_url, payload, format="multipart")
+        self.assertEqual(upload_response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(ImageUpload.objects.filter(name=payload['name']).count(), 1)
+
+        list_response = self.client.get(self.uploads_url, format='json')
+        self.assertEqual(list_response.status_code, status.HTTP_200_OK)
+
+        list_response_data = list_response.json()
+        self.assertEqual(list_response_data['count'], 1)
+
+    def test_image_upload_list(self):
+        response = self.client.get(self.uploads_url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
