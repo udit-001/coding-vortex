@@ -105,6 +105,7 @@ class CategoryListView(generics.ListCreateAPIView):
     `POST` Create a Category
 
     """
+    name = 'category-list'
     queryset = models.Category.objects.all()
     serializer_class = CategorySerializer
     lookup_field = 'slug'
@@ -120,6 +121,7 @@ class CategoryDetailView(generics.RetrieveUpdateAPIView):
     queryset = models.Category.objects.all()
     serializer_class = CategorySerializer
     lookup_field = 'slug'
+    name = "category-detail"
 
 
 class CreateUserView(generics.ListCreateAPIView):

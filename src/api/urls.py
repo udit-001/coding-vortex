@@ -19,9 +19,9 @@ urlpatterns = [
     path('authors/<uuid:uuid>', views.AuthorDetail.as_view(),
          name='author-detail'),
     path('categories/', views.CategoryListView.as_view(),
-         name='category-list'),
+         name=views.CategoryListView.name),
     path('categories/<slug:slug>', views.CategoryDetailView.as_view(),
-         name='category-detail'),
+         name=views.CategoryDetailView.name),
     path('uploads/', views.UploadImageView.as_view(),
          name=views.UploadImageView.name)
 ]
