@@ -265,3 +265,52 @@ class CategoryTests(APITestCase):
         detail_response = self.client.patch(detail_url, update_payload, format='json')
         self.assertEqual(detail_response.status_code, status.HTTP_200_OK)
         self.assertEqual(detail_response.json()['name'], update_payload['name'])
+
+
+class AuthorTests(APITestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.login_data = {
+            'username': 'testuser',
+            'password': 'testpassword'
+        }
+        user_url = reverse(CreateUserView.name)
+        data = {'username': 'test', 'password': 'testpass'}
+        user_response = self.client.post(user_url, data, format='json')
+
+        token_url = reverse('obtain-token')
+        token_response = self.client.post(token_url, data, format='json')
+
+        self.token = token_response.data['token']
+        self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token}')
+        self.author_url = reverse(AuthorList.name)
+        self.payload = {
+            "display_name": "Author Name",
+            "short_description": "Backend Engineer who loves Python",
+            "bio": "I like to travel in trains"
+        }
+
+    def test_author_list(self):
+        response = self.client.get(self.author_url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.json()['count'], 1)
+
+    def test_author_update(self):
+        author = Author.objects.first()
+        author_url = reverse(AuthorDetail.name, kwargs={"uuid": author.uuid})
+        update_response = self.client.put(author_url, self.payload, format='json')
+        self.assertEqual(update_response.status_code, status.HTTP_200_OK)
+
+        updated_obj = Author.objects.get(uuid=author.uuid)
+        self.assertEqual(updated_obj.display_name, self.payload['display_name'])
+        self.assertEqual(updated_obj.short_description, self.payload['short_description'])
+        self.assertEqual(updated_obj.bio, self.payload['bio'])
+
+    def test_author_patch_update(self):
+        author = Author.objects.first()
+        author_url = reverse(AuthorDetail.name, kwargs={"uuid": author.uuid})
+        patch_response = self.client.patch(author_url, {"bio": self.payload['bio']}, format='json')
+        self.assertEqual(patch_response.status_code, status.HTTP_200_OK)
+
+        updated_obj = Author.objects.get(uuid=author.uuid)
+        self.assertEqual(updated_obj.bio, self.payload['bio'])
