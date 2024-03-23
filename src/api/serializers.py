@@ -10,7 +10,7 @@ from uploads.models import ImageUpload
 
 
 class PostSerializer(TaggitSerializer, serializers.HyperlinkedModelSerializer):
-    tags = TagListSerializerField()
+    tags = TagListSerializerField(required=False)
 
     class Meta:
         model = models.Post
@@ -39,9 +39,9 @@ class PostSerializer(TaggitSerializer, serializers.HyperlinkedModelSerializer):
     author = serializers.ReadOnlyField(source='author.display_name')
 
     category = serializers.SlugRelatedField(
-        queryset=models.Category.objects.all(), slug_field='name')
+        queryset=models.Category.objects.all(), slug_field='name', required=False)
     featured_image = serializers.SlugRelatedField(
-        queryset=ImageUpload.objects.all(), slug_field='name')
+        queryset=ImageUpload.objects.all(), slug_field='name', required=False)
 
 
 class AuthorSerializer(serializers.HyperlinkedModelSerializer):
