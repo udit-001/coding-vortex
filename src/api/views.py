@@ -69,9 +69,9 @@ class AuthorList(generics.ListAPIView):
     `GET` Retrieve Details for a Specific Author
 
     """
+    name = 'author-list'
     queryset = models.Author.objects.all()
     serializer_class = AuthorSerializer
-    name = 'Authors List'
     lookup_field = 'uuid'
     search_fields = (
         '$display_name',
@@ -87,6 +87,7 @@ class AuthorDetail(generics.RetrieveUpdateAPIView):
 
     `PATCH` Update an Author
     """
+    name = "author-detail"
     queryset = models.Author.objects.all()
     serializer_class = AuthorSerializer
     lookup_field = 'uuid'
