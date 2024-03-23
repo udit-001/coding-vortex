@@ -295,6 +295,13 @@ class AuthorTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json()['count'], 1)
 
+    def test_author_get(self):
+        author = Author.objects.first()
+        author_url = reverse(AuthorDetail.name, kwargs={"uuid": author.uuid})
+        response = self.client.get(author_url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.json()['user'], author.user.username)
+
     def test_author_update(self):
         author = Author.objects.first()
         author_url = reverse(AuthorDetail.name, kwargs={"uuid": author.uuid})
