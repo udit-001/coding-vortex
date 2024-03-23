@@ -13,6 +13,14 @@ from .views import *
 
 
 class UserTests(APITestCase):
+    def test_list_user(self):
+        """
+        Ensure we get the list of users
+        """
+        url = reverse(CreateUserView.name)
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
     def test_create_user(self):
         """
         Ensure we can create a user
@@ -21,6 +29,10 @@ class UserTests(APITestCase):
         data = {'username': 'test', 'password': 'testpass'}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        list_response = self.client.get(url, format='json')
+        self.assertEqual(list_response.status_code, status.HTTP_200_OK)
+        self.assertEqual(list_response.json()['count'], 1)
 
     def test_obtain_token(self):
         """
