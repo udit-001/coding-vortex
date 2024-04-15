@@ -53,7 +53,7 @@ scandir==1.10.0
 sh==1.12.14
 six==1.12.0
 soupsieve==1.9.4
-sqlparse==0.3.0
+sqlparse==0.5.0
 taggit-selectize==2.7.1
 traitlets==4.3.2
 uritemplate==3.0.0
